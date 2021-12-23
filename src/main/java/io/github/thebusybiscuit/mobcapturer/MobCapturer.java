@@ -116,11 +116,11 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
 
         new PelletListener(this);
 
-        itemGroup = new ItemGroup(new NamespacedKey(this, "mob_capturer"), new CustomItemStack(PlayerHead.getItemStack(PlayerSkin.fromHashCode("d429ff1d2015cb11398471bb2f895f7b4c3ccec201e4ad7a86ff24b744878c")), "&dMob Capturer"));
-        research = new Research(new NamespacedKey(this, "mob_capturing"), 32652, "Capturing Mobs", 28);
+        itemGroup = new ItemGroup(new NamespacedKey(this, "mob_capturer"), new CustomItemStack(PlayerHead.getItemStack(PlayerSkin.fromHashCode("d429ff1d2015cb11398471bb2f895f7b4c3ccec201e4ad7a86ff24b744878c")), "&d生物捕捉器"));
+        research = new Research(new NamespacedKey(this, "mob_capturing"), 32652, "抓捕生物", 28);
 
-        SlimefunItemStack cannon = new SlimefunItemStack("MOB_CANNON", Material.BLAZE_ROD, "&6Mob Capturing Cannon", "", "&eRight Click &7to shoot a &fMob Caging Pellet");
-        SlimefunItemStack pellet = new SlimefunItemStack("MOB_CAPTURING_PELLET", "983b30e9d135b05190eea2c3ac61e2ab55a2d81e1a58dbb26983a14082664", "&fMob Capturing Pellet", "", "&7These Pellets are used as", "&7Ammunition for your &6Mob Capturing Cannon");
+        SlimefunItemStack cannon = new SlimefunItemStack("MOB_CANNON", Material.BLAZE_ROD, "&6生物捕捉器", "", "&e右键 &7发射 &a捕捉胶囊");
+        SlimefunItemStack pellet = new SlimefunItemStack("MOB_CAPTURING_PELLET", "983b30e9d135b05190eea2c3ac61e2ab55a2d81e1a58dbb26983a14082664", "&a捕捉胶囊 &7(空)", "", "&7这些捕捉胶囊用于", "&7充当 &6生物捕捉器 &7的捕捉弹药");
 
         MobPellet mobPellet = new MobPellet(itemGroup, pellet, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] { new ItemStack(Material.STRING), new ItemStack(Material.IRON_NUGGET), new ItemStack(Material.STRING), SlimefunItems.MAGIC_LUMP_2, new ItemStack(Material.EGG), SlimefunItems.MAGIC_LUMP_2, new ItemStack(Material.STRING), new ItemStack(Material.IRON_NUGGET), new ItemStack(Material.STRING) });
 
@@ -132,7 +132,7 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         research.addItems(mobCannon);
         mobCannon.register(this);
 
-        recipeType = new RecipeType(new NamespacedKey(this, "mob_capturing"), new CustomItemStack(cannon, "&6Mob Capturing Cannon", "&7Use a &6Mob Capturing Cannon", "&7to catch the given Mob."));
+        recipeType = new RecipeType(new NamespacedKey(this, "mob_capturing"), new CustomItemStack(cannon, "&6生物捕捉器", "&7使用 &a捕捉胶囊", "&7捕捉生物"));
 
         // Animals
         register("Cow", EntityType.COW, new AnimalsAdapter<>(Cow.class), "9419f15ff54dae5d040f9b9d8eb2a8989e676710922a0ca164da613ca61e9");
@@ -218,7 +218,7 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
     }
 
     public <T extends LivingEntity> void register(String name, EntityType type, MobAdapter<T> adapter, String eggTexture) {
-        SlimefunItemStack itemstack = new SlimefunItemStack("MOB_EGG_" + type.toString(), eggTexture, "&aMob Egg &7(" + name + ")", "", "&7Right Click this Item on a Block", "&7to release your captured Mob");
+        SlimefunItemStack itemstack = new SlimefunItemStack("MOB_EGG_" + type.toString(), eggTexture, "&a捕捉胶囊 &7(" + name + ")", "", "&7右键方块", "&7释放捕捉的生物");
 
         MobEgg<T> egg = new MobEgg<>(itemGroup, itemstack, dataKey, inventoryKey, adapter, recipeType, new ItemStack[] { null, null, null, null, new CustomItemStack(PlayerHead.getItemStack(PlayerSkin.fromHashCode(eggTexture)), ChatColor.WHITE + name), null, null, null, null });
 
